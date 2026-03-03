@@ -28,10 +28,13 @@ return {
 			"<cmd>Trouble loclist toggle<cr>",
 			desc = "Location List (Trouble)",
 		},
-		{
-			"<leader>xQ",
-			"<cmd>Trouble qflist toggle<cr>",
-			desc = "Quickfix List (Trouble)",
-		},
 	},
+	config = function()
+		vim.keymap.set("n", "<leader>xQ", function()
+			-- zet alle diagnostics in de quickfix list
+			vim.diagnostic.setqflist({ open = false })
+			-- open Trouble quickfix
+			vim.cmd("Trouble qflist toggle")
+		end, { desc = "Quickfix List (Trouble)" })
+	end,
 }
